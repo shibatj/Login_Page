@@ -160,12 +160,22 @@ public class Login_Page extends javax.swing.JFrame {
         String usr = usr_log.getText().trim();
         String pass = pass_log.getText().trim();
 
+        String hashedPass = Register_Manager.hashPassword(pass);
+
+        Register foundUser = Register_Manager.searchUser(usr, hashedPass);
+        
         if(usr.isEmpty() || pass.isEmpty()){
             JOptionPane.showMessageDialog(this, "Please fill in all fields");
             return;
         }
+
+        if (foundUser != null) {
+            JOptionPane.showMessageDialog(this, "Login Success!");
+        }else if (foundUser == null) {
+            JOptionPane.showMessageDialog(this, "username not found, try again?");
+        }
         
-        reg_man.searchUser(usr, pass);
+        reg_man.searchUser(usr, hashedPass);
         
     }//GEN-LAST:event_Login_btnActionPerformed
 

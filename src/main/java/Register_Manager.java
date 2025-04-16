@@ -1,16 +1,17 @@
-
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
+public class Register_Manager {
+    private static ArrayList<Register> reg = new ArrayList<>();
 
-    public class Register_Manager {
-        private static ArrayList<Register> reg = new ArrayList<>();
+    public static void registerUser(String usr, String pass, String gender) {
+        String hashedPass = hashPassword(pass);  // hash first  
+        Register new_reg = new Register(usr, hashedPass, gender);
+        reg.add(new_reg);
+    }
 
-        public static void registerUser(String usr, String pass, String gender){
-            Register new_reg = new Register(usr, pass, gender);
-            reg.add(new_reg);
-        }
-    
     public static boolean isUsernameTaken(String usr) {
         for (Register r : reg) {
             if (r.getUsr().equalsIgnoreCase(usr)) {
@@ -23,12 +24,27 @@ import javax.swing.JOptionPane;
     public static Register searchUser(String usr, String pass) {
         for (Register r : reg) {
             if (r.getUsr().equals(usr) && r.getPass().equals(pass)) {
-                JOptionPane.showMessageDialog(null, "username correct");
                 return r;
             }
         }
-        JOptionPane.showMessageDialog(null, "username not found, try again?");
         return null;
     }
 
+    // Hash function to convert password to a fixed-length string
+    // using SHA-256 algorithm
+    public static String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashedBytes = md.digest(password.getBytes());
+            StringBuilder sb = new StringBuilder();
+
+            for (byte b : hashedBytes) {
+                sb.append(String.format("%02x", b));  // change to hex
+            }
+
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Hashing algorithm not found.", e);
+        }
+    }
 }
