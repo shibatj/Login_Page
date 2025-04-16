@@ -6,6 +6,7 @@ public class Login_Page extends javax.swing.JFrame {
     
     Register_Manager reg_man = new Register_Manager();
     Register_Page reg = new Register_Page();
+    Main_Menu main = new Main_Menu();
 
     public Login_Page() {
         initComponents();
@@ -171,12 +172,11 @@ public class Login_Page extends javax.swing.JFrame {
 
         if (foundUser != null) {
             JOptionPane.showMessageDialog(this, "Login Success!");
+            main.setVisible(true);
+            this.dispose();
         }else if (foundUser == null) {
             JOptionPane.showMessageDialog(this, "username not found, try again?");
         }
-        
-        reg_man.searchUser(usr, hashedPass);
-        
     }//GEN-LAST:event_Login_btnActionPerformed
 
     private void Regist_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regist_btnActionPerformed
