@@ -1,6 +1,9 @@
+
+import java.util.ArrayList;
+
 public class Main_Menu extends javax.swing.JFrame {
 
-    private MemberManager memberManager = new MemberManager();
+    private MemberManager mem = new MemberManager();
 
     public Main_Menu() {
         initComponents();
@@ -75,9 +78,13 @@ public class Main_Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void show_btnActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        memberManager.showAllMembers();
-}
+    private void show_btnActionPerformed(java.awt.event.ActionEvent evt) {                          
+        Member[] member = mem.getMember();
+        int index = mem.getIndex();
+        new All_Member(member, index).setVisible(true);
+        this.dispose();
+
+    }                                        
 
     private void addMem_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMem_btnActionPerformed
         // TODO add your handling code here:

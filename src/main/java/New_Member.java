@@ -5,8 +5,9 @@ import java.awt.event.ActionListener;
 
 public class New_Member extends javax.swing.JFrame {
 
-    private MemberManager memberManager;
+    MemberManager mem = new MemberManager();
     private Main_Menu mainMenu = new Main_Menu();
+    static Member m;
 
 
     private String selectPackage;
@@ -14,8 +15,6 @@ public class New_Member extends javax.swing.JFrame {
     
     public New_Member() {
         initComponents();
-        
-        memberManager = new MemberManager();
         
         pac_ch.removeAllItems();
         mem_ch.removeAllItems();
@@ -263,8 +262,7 @@ public class New_Member extends javax.swing.JFrame {
 
     private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed
         // TODO add your handling code here
-        StringBuilder memberInfo = new StringBuilder();
-                
+        
         String name = name_txt.getText().trim();
         String email = email_txt.getText().trim();
         String phone = phone_txt.getText().trim();
@@ -276,26 +274,22 @@ public class New_Member extends javax.swing.JFrame {
             int packagePrice = getPackagePrice(selectPackage);
             int membershipPrice = getMembershipPrice(selectMemberShip);
             int totalPrice = packagePrice + membershipPrice;
-
-            memberManager.addMember(name, email, phone, location, selectPackage, selectMemberShip, totalPrice);
-
-            int lastID = MemberManager.getLastMemberID();
-
+            
+            m = new Member(name_txt.getText(), email_txt.getText(), phone_txt.getText(), loc_txt.getText(), selectPackage, selectMemberShip, totalPrice);
+            mem.input(m);
+            
             JOptionPane.showMessageDialog(null, "Member added successfully!\n"
                     + "Package >> "+selectPackage + " Price is : " + packagePrice + "\n"
                     + "MemberShip >> " + selectMemberShip + "_Month Price is " + membershipPrice + "\n"
                     + "Total Price is " + totalPrice);
-
 
             name_txt.setText("");
             email_txt.setText("");
             phone_txt.setText("");
             loc_txt.setText("");
 
-            this.setVisible(false);
-
-            // Show the main menu
             mainMenu.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_add_btnActionPerformed
 

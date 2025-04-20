@@ -101,13 +101,10 @@ public class Search extends javax.swing.JFrame {
         String input = search_txt.getText().trim();
 
         try {
-            // Convert input to int
             int searchID = Integer.parseInt(input);
+            Member foundMember = memberManager.search(searchID);
+            
 
-            // Search for the member by ID
-            Member foundMember = MemberManager.searchMemberByID(searchID);
-
-            // If the member is found, display the information
             if (foundMember != null) {
                 Info_Member info = new Info_Member();
                 info.name_show.setText(foundMember.getName());

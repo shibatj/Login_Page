@@ -24,63 +24,23 @@ public class Member {
         this.totalPrice = totalPrice;  // Corrected assignment
     }
 
-    public int getID() {
-        return ID;
-    }
+    public void setID(int ID) {this.ID = ID;}
+    public void setLockerID(int LockerID) {this.LockerID = LockerID;}
+    public void setName(String name) {this.name = name;}
+    public void setEmail(String email) {this.email = email;}
+    public void setPhone(String phone) {this.phone = phone;}
+    public void setLocation(String location) {this.location = location;}
+    public void setPackage(String Mem_pac) {this.Mem_pac = Mem_pac;}
+    public void setMembership(String membership) {this.membership = membership;}
+    public void setTotalPrice(int totalPrice) {this.totalPrice = totalPrice;}
     
-    public int getLockerID() {
-        return LockerID;
-    }
-    
-    public String getName() {
-        return name;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    public String getEmail() {
-        return email;
-    }
-    
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
-    public String getPhone() {
-        return phone;
-    }
-    
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-    
-    public String getLocation() {
-        return location;
-    }
-    
-    public void setLocation(String location) {
-        this.location = location;
-    }
-    
-    public String getPackage() {
-        return Mem_pac;
-    }
-    
-    public void setPackage(String Mem_pac) {
-        this.Mem_pac = Mem_pac;
-    }
-    
-    public String getMembership() {
-        return membership;
-    }
-    
-    public void setMembership(String membership) {
-        this.membership = membership;
-    }
-
-    public int getTotalPrice() {
-        return totalPrice;
-    }
+    public int getID() { return ID; }
+    public int getLockerID() {return LockerID;}
+    public String getName() {return name;}
+    public String getEmail() {return email;}
+    public String getPhone() {return phone;}
+    public String getLocation() {return location;}
+    public String getPackage() {return Mem_pac;}
+    public String getMembership() {return membership;}
+    public int getTotalPrice() {return totalPrice;}
 }
